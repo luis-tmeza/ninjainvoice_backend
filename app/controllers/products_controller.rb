@@ -9,6 +9,11 @@ class ProductsController < ApplicationController
     render json: @product
   end
 
+  def search
+    @products = Product.select(:name, :id, :price).where('name LIKE ?', "%#{params['search_query']}%") unless params['search_query'].blank?
+    render json: @products
+  end
+
   def create
     @product = Product.create(
       name: params[:name],

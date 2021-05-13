@@ -9,6 +9,11 @@ class CustomersController < ApplicationController
     render json: @customer
   end
 
+  def search
+  @customers = Customer.select(:name, :id, :email, :address, :cell_phone_number, :city).where('name LIKE ?', "%#{params['search_query']}%") unless params['search_query'].blank?
+  render json: @customers
+end
+
   def create
     @customer = Customer.create(
       name: params[:name],

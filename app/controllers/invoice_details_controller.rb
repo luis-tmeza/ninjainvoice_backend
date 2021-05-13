@@ -14,6 +14,8 @@ class InvoiceDetailsController < ApplicationController
       invoice_id: params[:invoice_id],
       product_id: params[:product_id],
       price: params[:price],
+      iva: params[:iva],
+      subtotal: [:subtotal],
       discount: params[:discount],
       quantity: params[:quantity]
     )
@@ -28,7 +30,9 @@ class InvoiceDetailsController < ApplicationController
       product_id: params[:product_id],
       price: params[:price],
       discount: params[:discount],
-      quantity: params[:quantity]
+      quantity: params[:quantity],
+      iva: params[:iva],
+      subtotal: params[:subtotal]
     )
     render json: @invoice_detail
   end
